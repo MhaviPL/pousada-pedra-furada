@@ -1,14 +1,14 @@
 import { render, screen } from "@testing-library/react";
-import Layout from "../app/layout";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
-jest.mock("../components/Header", () => () => <header>Mock Header</header>);
-test("deve renderizar o Header e o conteúdo filho", () => {
-    render(
-        <Layout>
-            <p>Conteúdo interno</p>
-        </Layout>
-    );
-    
-    expect(screen.getByText("Mock Header")).toBeInTheDocument();
-    expect(screen.getByText("Conteúdo interno")).toBeInTheDocument();
+test("deve renderizar o Header e Footer", () => {
+    render(<Header />);
+    expect(screen.getByText("Pousada Pedra Furada")).toBeInTheDocument();
+    expect(screen.getByText("Login")).toBeInTheDocument();
+});
+
+test("deve renderizar o Footer", () => {
+    render(<Footer />);
+    expect(screen.getByRole("contentinfo")).toBeInTheDocument();
 }); 
